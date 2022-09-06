@@ -1,10 +1,6 @@
-<!-- <footer class="main-footer">
-    <div class="container">
-    <p align="center"><b>Copyright &copy; <?php echo date('Y'); ?> stockUg.</b></p>
-    </div>
-</footer> -->
 
 <!-- Footer -->
+
 <footer>
     <div class="footer-top">
         <div class="container">

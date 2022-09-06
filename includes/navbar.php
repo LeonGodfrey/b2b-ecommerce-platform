@@ -7,8 +7,8 @@
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white navbar-fixed">
     <div class="container">
       <a href="index.php" class="navbar-brand">
-        <img src="images/stockug_black.png" alt="stockUg Logo" width="180px">
-        <!-- <span class="brand-text font-weight-light" style="font-size: 25px;"><span style="color:#ffa500;"><b>stock</b></span>Ug</span> -->
+        <img src="images/logoNew1.png" alt="stockUg Logo" width="40px">
+        <span class="brand-text font-weight-light" style="font-size: 25px;"><span style="color:#ffa500;"><b>stock</b></span>Ug</span>
       </a>
 
       <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,9 +24,15 @@
           <li class="nav-item">
             <a href="contact.php" class="nav-link">Help</a>
           </li>  
-          <li class='nav-item'>
+
+          <?php
+          if(!isset($_SESSION['user'])){
+            echo "
+            <li class='nav-item'>
             <a href='login1.php' class='nav-link'>Supply with us!</a>
-          </li>         
+          </li>  ";
+          } ?>
+                 
           <li class="nav-item dropdown">
             
             <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">SUPPLIERS</a>
@@ -81,16 +87,11 @@
         <!-- Messages Dropdown Menu -->
         <li class="dropdown messages-menu">
           <!-- Menu toggle button -->
-          <a href="#" class="nav-link" data-toggle="dropdown">
+          <a href="cart_view.php" class="nav-link" >Cart
             <i class="fa fa-shopping-cart"></i>
             <span class="badge badge-warning navbar-badge cart_count"></span>
           </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">You have <span class="cart_count"></span> item(s) in cart</span>
-            <div class="dropdown-divider"></div>
-            <ul style="list-style: none; padding: 0;" id="cart_menu">
-            </ul>
-            
+                   
             
           
         </li>
@@ -120,7 +121,7 @@
           </li>
           <li class="user-footer">
           
-          <a href="profile.php" class="btn btn-default btn-flat">Profile</a>
+          <a href="sme/home.php" class="btn btn-default btn-flat">Dashboard</a>
           
           <a href="logout.php" class="btn btn-default btn-flat float-right">Sign out</a>
           

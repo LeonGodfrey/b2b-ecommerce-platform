@@ -1,6 +1,8 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-<body  class="hold-transition layout-top-nav layout-navbar-fixed">
+<body  class="hold-transition layout-top-nav layout-navbar-fixed" onload="myFunction()" style="margin:0;">
+<div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
 	<div class="wrapper">
 
 		<?php include 'includes/navbar.php'; ?>
@@ -134,12 +136,26 @@
 					</div>
 					<?php include 'includes/scroll_btn.php'; ?>
 				</section>
+				
 
 			</div>
 		</div>
 
 		<?php include 'includes/footer.php'; ?>
 	</div>
+					</div>
+	<script>
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 3000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
+</script>
 
 	<?php include 'includes/scripts.php'; ?>
 </body>
