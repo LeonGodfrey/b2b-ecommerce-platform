@@ -29,7 +29,7 @@
           if(!isset($_SESSION['user'])){
             echo "
             <li class='nav-item'>
-            <a href='login1.php' class='nav-link'>Supply with us!</a>
+            <a href='login1.php' class='nav-link'>Supplier Account</a>
           </li>  ";
           } ?>
                  
@@ -132,7 +132,8 @@
         }
         else{
           echo "
-          <li><a class='nav-link' href='login.php'><b>LOGIN</b></a></li>  
+          <li><a class='nav-link' href='login.php'><b>LOGIN</b></a></li> 
+          <li><a class='nav-link' href='signup.php'><b>SIGNUP</b></a></li>  
                  
           ";
         }

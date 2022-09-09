@@ -5,18 +5,14 @@
 <?php
 if(!(isset($_SESSION['checkout']))){ 
 	header('location: index.php');
-
 }
 
 if(!(isset($_POST['deliver']))){
 	
 	$_SESSION['error'] = 'Choose a delivery method first!';
-	header('location: checkout.php');
-	exit();
-
+	header('location: checkout.php');	
 }else{
-	// //get the delivery method
-	
+	// //get the delivery method	
 		$_SESSION['delivery'] = $_POST['deliver'];
 }
 
@@ -26,7 +22,7 @@ if(!(isset($_POST['deliver']))){
 
 
 <?php include 'includes/header.php'; ?>
-<body  class="hold-transition skin-blue layout-top-nav">
+<body  class="hold-transition layout-top-nav layout-navbar-fixed">
 	<div class="wrapper">
 
 		<?php include 'includes/navbar.php'; ?>

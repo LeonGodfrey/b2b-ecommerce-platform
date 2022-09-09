@@ -7,12 +7,12 @@
             <div class="row">
                 <div class="col-md-3 footer-about wow fadeInUp">
                    <p> <a href="index.php" >
-                        <img src="images/stockug_white.png" alt="stockUg Logo" width="250px"  style="opacity: .8">
+                        <img src="images/stockug_white.png" alt="stockUg Logo" width="150px"  style="opacity: .8">
                         
                     </a> </p>
                     <p>A software support for b2b operations in Small and Medium Enterprises in Uganda.
                     </p>
-                    <p><a href="#">Our Team</a></p>
+                    
                 </div>
                 <div class="col-md-4 offset-md-1 footer-contact wow fadeInDown">
                     <h3>Contact</h3>

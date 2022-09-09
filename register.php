@@ -88,14 +88,14 @@
 					// 	<p>Please click the link below to activate your account.</p>
 					// 	<a href='http://localhost/ecommerce/activate.php?code=".$code."&user=".$userid."'>Activate Account</a>
 					// ";
-					// $to = "ssegodfrey171@gmail.com";
+					// $to = $email;
 					// $subject = "My subject";
 					// $txt = "Hello world!";
 					// $headers = "From: webmaster@example.com" . "\r\n" .
 					// "CC: ssegodfrey171@gmail.com";
 					
 					// mail($to,$subject,$txt,$headers);
-					// echo "mail sent"
+					// echo "mail sent";
 									
 
 				$pdo->close();

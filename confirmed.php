@@ -33,7 +33,7 @@ if (!(isset($_POST['placeOrder']))) {
 			try {
 				$amount = $row['price'] * $row['quantity'];
 				//generate order number
-				$orderNo = "st" . $row['productId'] . "" . date("Ymd") . "" . date("hi");
+				$orderNo = "st" . $row['productId'] . "" . date("Ymd") . "" . rand(11,111);
 				//insert into order
 
 				$stmt = $conn->prepare("INSERT INTO orders (amount, orderNo, userIdS, userIdD, status, productName, price, quantity, delivery, order_date, order_time) VALUES (:amount, :orderNo, :userIdS, :userIdD, :status, :productName, :price, :quantity, :delivery, :order_date, :order_time)");
@@ -53,7 +53,7 @@ if (!(isset($_POST['placeOrder']))) {
 		}
 	} catch (PDOException $e) {
 		$output1 .= $e->getMessage();
-		echo $output1;
+		//echo $output1;
 	}
 	//dele
 

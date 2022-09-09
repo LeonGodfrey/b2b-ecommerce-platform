@@ -12,6 +12,7 @@
 
 				<!-- Main content -->
 				<section class="content">
+					<br>
 
 					<div class="row">
 						<div class='col-xs-12 col-sm-12 col-md-9 col-lg-9'>
@@ -39,13 +40,13 @@
 								</ol>
 								<div class="carousel-inner">
 									<div class="carousel-item active">
-										<img class="d-block w-100" src="images/banner12.jpg" alt="First slide">
+										<img class="d-block w-100" src="images/ban01.jpg" alt="First slide">
 									</div>
 									<div class="carousel-item">
-										<img class="d-block w-100" src="images/banner13.png" alt="Second slide">
+										<img class="d-block w-100" src="images/ban02.jpg" alt="Second slide">
 									</div>
 									<div class="carousel-item">
-										<img class="d-block w-100" src="images/banner12.jpg" alt="Third slide">
+										<img class="d-block w-100" src="images/ban03.jpg" alt="Third slide">
 									</div>
 								</div>
 								<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -61,17 +62,19 @@
 									<span class="sr-only">Next</span>
 								</a>
 							</div>
-
+							
 							<!-- carousel end -->
 						</div>
+						
 
 						<div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'>
+							<br>
 							<div class="card">	             
 
 								<div class="card-body">
 									<p style="font-size:20px;">Welcome to stockUg</p>
 									<p style="font-size:18px;">A home of all stock distributors!</p>
-									<p>Find all you will every need to stock you shop!</p>
+									<p>Find all you will every need to stock your shop!</p>
 																		
 								</div>
 							</div>
@@ -148,7 +151,7 @@
 var myVar;
 
 function myFunction() {
-  myVar = setTimeout(showPage, 3000);
+  myVar = setTimeout(showPage, 1000);
 }
 
 function showPage() {

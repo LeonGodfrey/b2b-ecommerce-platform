@@ -3,11 +3,7 @@ include 'includes/session.php';
 include 'includes/format.php';
 ?>
 <?php
-$today = date('Y-m-d');
-$year = date('Y');
-if (isset($_GET['year'])) {
-  $year = $_GET['year'];
-}
+
 
 $conn = $pdo->open();
 ?>
@@ -167,7 +163,7 @@ $conn = $pdo->open();
               <!-- DONUT CHART -->
               <div class="card card-danger">
                 <div class="card-header">
-                  <h3 class="card-title">Clients' Orders</h3>
+                  <h3 class="card-title">Your Orders</h3>
 
                   <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -191,9 +187,11 @@ $conn = $pdo->open();
             <div class="col-md-6">
 
               <!-- Info Boxes Style 2 -->
+              <a href="delivered_orders.php">
               <div class="info-box mb-3 bg-success">
                 <span class="info-box-icon"><i class="fas fa-check"></i></span>
 
+                
                 <div class="info-box-content">
                   <span class="info-box-text">Delivered Orders</span>
                   <span class="info-box-number">
@@ -205,10 +203,13 @@ $conn = $pdo->open();
                     echo $derow['numrows'];
                     ?>
                   </span>
-                </div>
+                </div>  
+                             
                 <!-- /.info-box-content -->
               </div>
+              </a> 
               <!-- Info Boxes Style 2 -->
+              <a href="confirmed_orders.php">
               <div class="info-box mb-3 bg-warning">
                 <span class="info-box-icon"><i class="fas fa-thumbs-up"></i></span>
 
@@ -226,7 +227,9 @@ $conn = $pdo->open();
                 </div>
                 <!-- /.info-box-content -->
               </div>
+              </a>
               <!-- /.info-box -->
+              <a href="pending.php">
               <div class="info-box mb-3 bg-info">
                 <span class="info-box-icon"><i class="fa fa-tag"></i></span>
 
@@ -244,8 +247,10 @@ $conn = $pdo->open();
                 </div>
                 <!-- /.info-box-content -->
               </div>
+              </a>
 
               <!-- /.info-box -->
+              <a href="rejected_orders.php">
               <div class="info-box mb-3 bg-danger">
                 <span class="info-box-icon"><i class="fas fa-times"></i></span>
 
@@ -263,6 +268,7 @@ $conn = $pdo->open();
                 </div>
                 <!-- /.info-box-content -->
               </div>
+              </a>
               <!-- /.info-box -->
 
 

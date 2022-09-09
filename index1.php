@@ -55,6 +55,7 @@
 
 
 						<!-- Default box -->
+						<br>
 						<div class="card col-12">
 							<div class="card-header">
 								<center><h2><?php echo $shop['shopName'];?></h2></center>
