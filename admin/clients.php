@@ -139,40 +139,11 @@ $(function(){
     getRow(id);
   });
 
-  $(document).on('click', '.photo', function(e){
-    e.preventDefault();
-    var id = $(this).data('id');
-    getRow(id);
-  });
+  
 
-  $(document).on('click', '.desc', function(e){
-    e.preventDefault();
-    var id = $(this).data('id');
-    getRow(id);
-  });
+ 
 
-  $('#select_category').change(function(){
-    var val = $(this).val();
-    if(val == 0){
-      window.location = 'products.php';
-    }
-    else{
-      window.location = 'products.php?category='+val;
-    }
-  });
-
-  $('#addproduct').click(function(e){
-    e.preventDefault();
-    getCategory();
-  });
-
-  $("#addnew").on("hidden.bs.modal", function () {
-      $('.append_items').remove();
-  });
-
-  $("#edit").on("hidden.bs.modal", function () {
-      $('.append_items').remove();
-  });
+  
 
 });
 
@@ -190,21 +161,11 @@ function getRow(id){
       $('#catselected').val(response.catId).html(response.catname);
       $('#edit_price').val(response.price);
       $('#desc1').val(response.description);
-      getCategory();
+      
     }
   });
 }
-function getCategory(Edit){
-  $.ajax({
-    type: 'POST',
-    url: 'category_fetch.php',
-    dataType: 'json',
-    success:function(response){
-      $('#category').append(response);
-      $('#edit_category').append(response);
-    }
-  });
-}
+
 </script>
 <!-- table script -->
 <script>

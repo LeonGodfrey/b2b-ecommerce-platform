@@ -129,7 +129,7 @@
                       <td><?php echo $row['order_date']; ?></td>
                       <td><?php echo $row['order_time']; ?></td>
                       <td><?php echo $row['delivery_date']; ?></td>                      
-                      <td>UGX<?php echo $row['delivery']; ?></td>
+                      <td><?php echo $row['delivery']; ?></td>
                     </tr>                   
                     </tbody>
                   </table>

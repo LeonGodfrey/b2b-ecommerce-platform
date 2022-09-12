@@ -33,7 +33,7 @@ if (!(isset($_POST['placeOrder']))) {
 			try {
 				$amount = $row['price'] * $row['quantity'];
 				//generate order number
-				$orderNo = "st" . $row['productId'] . "" . date("Ymd") . "" . rand(11,111);
+				$orderNo = "st" .date("Ymdhms").rand(0, 100);
 				//insert into order
 
 				$stmt = $conn->prepare("INSERT INTO orders (amount, orderNo, userIdS, userIdD, status, productName, price, quantity, delivery, order_date, order_time) VALUES (:amount, :orderNo, :userIdS, :userIdD, :status, :productName, :price, :quantity, :delivery, :order_date, :order_time)");

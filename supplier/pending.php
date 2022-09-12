@@ -73,7 +73,7 @@
                     $conn = $pdo->open();                  
                     try{
                       
-                      $stmt = $conn->prepare("SELECT * from orders left join sme on orders.userIdS = sme.userIdS where orders.userIdD= :id AND orders.status = :status");
+                      $stmt = $conn->prepare("SELECT * from orders left join sme on orders.userIdS = sme.userIdS where orders.userIdD= :id AND orders.status = :status ORDER BY order_date DESC, order_time");
                       $stmt->execute(['id'=>$supplier['userIdD'], 'status'=>'pending']);
                       foreach($stmt as $row){
                         

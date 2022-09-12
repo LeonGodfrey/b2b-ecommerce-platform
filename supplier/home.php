@@ -66,32 +66,37 @@ $conn = $pdo->open();
         <div class="container-fluid">
           <!-- Info boxes -->
           <div class="row">
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-barcode"></i></span>
+            
+              <div class="col-12 col-sm-6 col-md-3">
+              <a href="products.php">
+                <div class="info-box">
+                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-barcode"></i></span>
 
-                <div class="info-box-content">
-                  <span class="info-box-text">Products</span>
-                  <span class="info-box-number">
-                    <?php
-                    $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM product");
-                    $stmt->execute();
-                    $prow =  $stmt->fetch();
-                    echo $prow['numrows'];
-                    ?>
-                  </span>
+                  <div class="info-box-content">
+                    <span class="info-box-text">Products</span>
+                    <span class="info-box-number">
+                      <?php
+                      $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM product WHERE userIdD = :userIdD");
+                      $stmt->execute(['userIdD' => $supplier['userIdD']]);
+                      $prow =  $stmt->fetch();
+                      echo $prow['numrows'];
+                      ?>
+                    </span>
+                  </div>
+                  <!-- /.info-box-content -->
                 </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
+            </a>
+            <!-- /.info-box -->
+          </div>
+
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <a href="delivered_orders.php">
               <div class="info-box mb-3">
                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-check"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text">Delivered Ordes</span>
+                  <span class="info-box-text">Delivered Orders</span>
                   <span class="info-box-number">
                     <?php
                     $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
@@ -104,189 +109,72 @@ $conn = $pdo->open();
                 </div>
                 <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-
-            <!-- fix for small devices only -->
-            <div class="clearfix hidden-md-up"></div>
-
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Total Sales</span>
-                  <span class="info-box-number">UGX
-                    <?php
-
-                    $stmt = $conn->prepare("SELECT sum(amount) as sales from orders where userIdD= :id AND status = :status");
-                    $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'delivered']);
-                    $total = $stmt->fetch();
-
-                    $total1 = number_format_short($total['sales'], 2);
-                    echo $total1;
-
-                    ?>
-
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
-            <div class="col-12 col-sm-6 col-md-3">
-              <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Clients</span>
-                  <span class="info-box-number">
-                    <?php
-                    $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM sme");
-                    $stmt->execute();
-                    $urow =  $stmt->fetch();
-                    echo $urow['numrows'];
-                    ?>
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-            </div>
-            <!-- /.col -->
+            </a>
+            <!-- /.info-box -->
           </div>
-          <!-- /.row -->
 
-          <!-- chart -->
-          <div class="row">
-            <div class="col-md-6">
+          <!-- /.col -->
 
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
 
-              <!-- DONUT CHART -->
-              <div class="card card-danger">
-                <div class="card-header">
-                  <h3 class="card-title">Clients' Orders</h3>
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                </div>
-                <!-- /.card-body -->
+              <div class="info-box-content">
+                <span class="info-box-text">Total Sales</span>
+                <span class="info-box-number">UGX
+                  <?php
+
+                  $stmt = $conn->prepare("SELECT sum(amount) as sales from orders where userIdD= :id AND status = :status");
+                  $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'delivered']);
+                  $total = $stmt->fetch();
+
+                  $total1 = number_format_short($total['sales'], 2);
+                  echo $total1;
+
+                  ?>
+
+                </span>
               </div>
-              <!-- /.card -->
-
-
-
+              <!-- /.info-box-content -->
             </div>
-            <div class="col-md-6">
-
-              <!-- Info Boxes Style 2 -->
-              <div class="info-box mb-3 bg-success">
-                <span class="info-box-icon"><i class="fas fa-check"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Delivered Orders</span>
-                  <span class="info-box-number">
-                    <?php
-                    $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
-                    $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'delivered']);
-                    $derow = $stmt->fetch();
-
-                    echo $derow['numrows'];
-                    ?>
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- Info Boxes Style 2 -->
-              <div class="info-box mb-3 bg-warning">
-                <span class="info-box-icon"><i class="fas fa-thumbs-up"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Confirmed Orders</span>
-                  <span class="info-box-number">
-                    <?php
-                    $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
-                    $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'confirmed']);
-                    $crow = $stmt->fetch();
-
-                    echo $crow['numrows'];
-                    ?>
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-              <div class="info-box mb-3 bg-info">
-                <span class="info-box-icon"><i class="fa fa-tag"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Pending</span>
-                  <span class="info-box-number">
-                    <?php
-                    $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
-                    $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'pending']);
-                    $penrow = $stmt->fetch();
-
-                    echo $penrow['numrows'];
-                    ?>
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-
-              <!-- /.info-box -->
-              <div class="info-box mb-3 bg-danger">
-                <span class="info-box-icon"><i class="fas fa-times"></i></span>
-
-                <div class="info-box-content">
-                  <span class="info-box-text">Rejected Orders</span>
-                  <span class="info-box-number">
-                    <?php
-                    $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
-                    $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'delivered']);
-                    $rrow = $stmt->fetch();
-
-                    echo $rrow['numrows'];
-                    ?>
-                  </span>
-                </div>
-                <!-- /.info-box-content -->
-              </div>
-              <!-- /.info-box -->
-
-
-            </div>
-            <!-- /.col (RIGHT) -->
+            <!-- /.info-box -->
           </div>
-          <!-- /.row -->
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
+              <div class="info-box-content">
+                <span class="info-box-text">Clients</span>
+                <span class="info-box-number">
+                  <?php
+                  $stmt = $conn->prepare("SELECT *, COUNT(*) AS numrows FROM sme");
+                  $stmt->execute();
+                  $urow =  $stmt->fetch();
+                  echo $urow['numrows'];
+                  ?>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
         </div>
         <!-- /.row -->
 
-        <!-- end chart -->
-
-
-        <!-- Main row -->
+        <!-- chart -->
         <div class="row">
-          <!-- Left col -->
-          <div class="col-md-12">
+          <div class="col-md-6">
 
 
-            <!-- TABLE: LATEST ORDERS -->
-            <div class="card">
-              <div class="card-header border-transparent">
-                <h3 class="card-title">Latest Orders</h3>
+            <!-- DONUT CHART -->
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Clients' Orders</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -297,33 +185,160 @@ $conn = $pdo->open();
                   </button>
                 </div>
               </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                  <table class="table m-0">
+              <div class="card-body">
+                <canvas id="donutChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
 
-                    </tbody>
 
-                    <thead>
-                      <th>Order No.</th>
-                      <th>Client</th>
-                      <th>Product</th>
-                      <th>Quantity</th>
-                      <th>Delivery</th>
-                      <th>date</th>
-                      <th>Time</th>
-                      <th>Status</th>
-                    </thead>
-                    <tbody>
-                      <?php
-                      $conn = $pdo->open();
-                      try {
 
-                        $stmt = $conn->prepare("SELECT * from orders left join sme on orders.userIdS = sme.userIdS where orders.userIdD= :id AND orders.status = :status");
-                        $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'pending']);
-                        foreach ($stmt as $row) {
+          </div>
+          <div class="col-md-6">
 
-                          echo "
+            <!-- Info Boxes Style 2 -->
+            <a href="delivered_orders.php">
+            <div class="info-box mb-3 bg-success">
+              <span class="info-box-icon"><i class="fas fa-check"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Delivered Orders</span>
+                <span class="info-box-number">
+                  <?php
+                  $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
+                  $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'delivered']);
+                  $derow = $stmt->fetch();
+
+                  echo $derow['numrows'];
+                  ?>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            </a>
+            <!-- Info Boxes Style 2 -->
+            <a href="confirmed_orders.php">
+            <div class="info-box mb-3 bg-warning">
+              <span class="info-box-icon"><i class="fas fa-thumbs-up"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Confirmed Orders</span>
+                <span class="info-box-number">
+                  <?php
+                  $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
+                  $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'confirmed']);
+                  $crow = $stmt->fetch();
+
+                  echo $crow['numrows'];
+                  ?>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            </a>
+            <!-- /.info-box -->
+            <a href="pending.php">
+            <div class="info-box mb-3 bg-info">
+              <span class="info-box-icon"><i class="fa fa-tag"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Pending</span>
+                <span class="info-box-number">
+                  <?php
+                  $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
+                  $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'pending']);
+                  $penrow = $stmt->fetch();
+
+                  echo $penrow['numrows'];
+                  ?>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            </a>
+
+            <!-- /.info-box -->
+            <a href="rejected_orders.php">
+            <div class="info-box mb-3 bg-danger">
+              <span class="info-box-icon"><i class="fas fa-times"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Rejected Orders</span>
+                <span class="info-box-number">
+                  <?php
+                  $stmt = $conn->prepare("SELECT count(*) as numrows from orders where userIdD= :id AND status = :status");
+                  $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'delivered']);
+                  $rrow = $stmt->fetch();
+
+                  echo $rrow['numrows'];
+                  ?>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            </a>
+            <!-- /.info-box -->
+
+
+          </div>
+          <!-- /.col (RIGHT) -->
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.row -->
+
+    <!-- end chart -->
+
+
+    <!-- Main row -->
+    <div class="row">
+      <!-- Left col -->
+      <div class="col-md-12">
+
+
+        <!-- TABLE: LATEST ORDERS -->
+        <div class="card">
+          <div class="card-header border-transparent">
+            <h3 class="card-title">Latest Orders</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table m-0">
+
+                </tbody>
+
+                <thead>
+                  <th>Order No.</th>
+                  <th>Client</th>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Delivery</th>
+                  <th>date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                </thead>
+                <tbody>
+                  <?php
+                  $conn = $pdo->open();
+                  try {
+
+                    $stmt = $conn->prepare("SELECT * from orders left join sme on orders.userIdS = sme.userIdS where orders.userIdD= :id AND orders.status = :status");
+                    $stmt->execute(['id' => $supplier['userIdD'], 'status' => 'pending']);
+                    foreach ($stmt as $row) {
+
+                      echo "
                           <tr>
                             <td>" . $row['orderNo'] . "</td>
                             <td>" . $row['shopName'] . "</td>
@@ -335,40 +350,40 @@ $conn = $pdo->open();
                             <td><span class='badge badge-warning'>Pending</span></td>
                             
                         ";
-                        }
-                      } catch (PDOException $e) {
-                        echo $e->getMessage();
-                      }
+                    }
+                  } catch (PDOException $e) {
+                    echo $e->getMessage();
+                  }
 
-                      $pdo->close();
-                      ?>
-                    </tbody>
+                  $pdo->close();
+                  ?>
+                </tbody>
 
-                  </table>
-                </div>
-                <!-- /.table-responsive -->
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <a href="pending.php" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-              </div>
-              <!-- /.card-footer -->
+              </table>
             </div>
-            <!-- /.card -->
+            <!-- /.table-responsive -->
           </div>
-          <!-- /.col -->
-
-          -
-
-
-
-          <!-- /.col -->
+          <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <a href="pending.php" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+          </div>
+          <!-- /.card-footer -->
         </div>
-        <!-- /.row -->
+        <!-- /.card -->
+      </div>
+      <!-- /.col -->
+
+      -
+
+
+
+      <!-- /.col -->
     </div>
-    <!--/. container-fluid -->
-    </section>
-    <!-- /.content -->
+    <!-- /.row -->
+  </div>
+  <!--/. container-fluid -->
+  </section>
+  <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
 

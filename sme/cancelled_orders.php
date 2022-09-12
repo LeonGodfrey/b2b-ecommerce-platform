@@ -52,7 +52,7 @@
                     $conn = $pdo->open();                  
                     try{
                       
-                      $stmt = $conn->prepare("SELECT * from orders left join distributor on orders.userIdD = distributor.userIdD where orders.userIdS= :id AND orders.status = :status");
+                      $stmt = $conn->prepare("SELECT * from orders left join distributor on orders.userIdD = distributor.userIdD where orders.userIdS= :id AND orders.status = :status order by order_date desc");
                         $stmt->execute(['id'=>$sme['userIdS'], 'status'=>'cancelled']);
                       foreach($stmt as $row){
                         
